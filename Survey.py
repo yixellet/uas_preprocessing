@@ -11,28 +11,21 @@ class Survey(object):
     routes = []
     groundFrameSize = None
 
-    def __init__(self, 
-                 objectName: str = '<название объекта>', 
-                 siteName: str = '<съёмочный участок>',
+    def __init__(self,
                  telemetryPath: str = '/home/owgrant/Документы/Работа/' \
                  'Данные_для_тестирования_плагинов_QGIS/' \
                  '2022_04_21_SonyRX1RM2_g201b20445_f001_telemetry.txt',
                  reliefType: str = 'HILLS',
-                 nominalAltitude: int = 300,
-                 groungPixelSize: float = 0.04) -> None:
+                 nominalAltitude: int = 300) -> None:
 
-        self.objectName = objectName
-        self.siteName = siteName
         self.telemetryPath = telemetryPath
         self.reliefType = reliefType
         self.nominalAltitude = nominalAltitude
-        self.groungPixelSize = groungPixelSize
     
     def __str__(self) -> str:
-        return '\tАЭРОФОТОСЪЁМКА\nОбъект:\t\t\t{}\nСъёмочный участок:\t{}' \
+        return '\tАЭРОФОТОСЪЁМКА\n' \
         '\nДата:\t\t\t{}\nВремя начала:\t\t{}\nВремя окончания:\t{}' \
-        '\nКоличество снимков:\t{}'.format(self.objectName, self.siteName, 
-        self.date, self.time['startTime'], self.time['endTime'], len(self.photos))
+        '\nКоличество снимков:\t{}'.format(self.date, self.time['startTime'], self.time['endTime'], len(self.photos))
     
     def extractDatetimeFromTelemetry(self) -> None:
         with open(self.telemetryPath, 'r') as file:
@@ -71,7 +64,6 @@ class Survey(object):
         route['photos'].append(self.photos[count-1])
         route['photos'].append(self.photos[count])
         while count <= len(self.photos) - 2:
-            name = self.photos[count].name
             basis0 = calcAzimuth(self.photos[count-1].lat, self.photos[count-1].lon, 
                               self.photos[count].lat, self.photos[count].lon)
             basis1 = calcAzimuth(self.photos[count].lat, self.photos[count].lon, 
@@ -106,5 +98,5 @@ class Survey(object):
         if self.nominalAltitude == 300:
             groundFrameWidth = 270
             groundFrameHeight = 180
-        self.groundFrameSize = (groundFrameWidth, groundFrameHeight)
+            self.groundFrameSize = (groundFrameWidth, groundFrameHeight)
         return self.groundFrameSize

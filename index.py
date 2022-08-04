@@ -1,18 +1,23 @@
 from datetime import datetime
-from Camera import Camera
 from Passport import Passport
 
 from Photo import Photo
 from QualityControl import QualityControl
+from SplitRinex import SplitRinex
 from Survey import Survey
+from constants import CAMERAS
+from defineReliefType import defineReliefType
+from survey_data import A6000_MARKS, AFS_TYPE, AREA, CAMERA_MODEL, CUSTOMER_COMPANY, FLIGHT_ALTITUDE, GROUND_PIXEL_SIZE, \
+    OBJECT_NAME, PASSPORT_DIRECTORY, RELIEF_ELEVATION_RANGE, RELIEF_TYPE, RINEX, RXI_MARKS, SITE_NAME, \
+    TELEMETRY, TERRITORY_TYPE
 """
 objectName = input('Название объекта съёмки: ')
 siteName = input('Съёмочный участок: ')
 telemetryPath = input('Путь к файлу телеметрии: ')
 """
-rx1cam = Camera(35, 0.0045, 7952, 5304, 71.6, 'RGB')
-#a6000cam = Camera(20, 0.0039, 6000, 4000, 70.7, 'NIR')
-survey = Survey('Протока Николаевская', '1')
+camera = CAMERAS[CAMERA_MODEL]
+relief_type = defineReliefType(TERRITORY_TYPE, FLIGHT_ALTITUDE, RELIEF_ELEVATION_RANGE)
+survey = Survey(TELEMETRY, relief_type, FLIGHT_ALTITUDE)
 survey.extractDatetimeFromTelemetry()
 groundFrameSize = survey.calcGroundFrameSize()
 photoPointsRawArray = survey.createPhotoPointsArray()
@@ -41,6 +46,10 @@ qualityControl.controlAbsoluteSlopeAngles(survey.photos)
 qualityControl.controlRelativeSlopeAngles(survey.routes)
 qualityControl.controlOverlaps(survey.routes, 80, 60, 'NATURE', 'HILLS')
 
-passport = Passport('test', survey.objectName, survey.siteName)
-passport.writeInfo('Служба природопользования', survey.date, survey.time['startTime'], survey.time['endTime'])
+passport = Passport(PASSPORT_DIRECTORY, OBJECT_NAME, SITE_NAME)
+passport.writeInfo(CUSTOMER_COMPANY, survey.date, survey.time['startTime'], 
+    survey.time['endTime'], RELIEF_TYPE, AFS_TYPE, AREA)
 passport.writeRoutes(survey.routes)
+
+splitRINEX = SplitRinex()
+splitRINEX.splitRinex(RINEX, RXI_MARKS, A6000_MARKS)
