@@ -27,6 +27,6 @@ class SplitRinex(object):
 
 if __name__ == "__main__":
     sr = SplitRinex()
-    sr.splitRinex('test/rinex/2022_07_26_g201b20445_f003_.22o copy.obs',
-    'test/rinex/2022_07_26_SonyRX1RM2_g201b20445_f003.marks',
-    'test/rinex/2022_07_26_SonyA6000_g201b20445_f003.marks')
+    sr.splitRinex('E:\ГЕОДЕЗИЯ\АЭРОФОТОСЪЕМКА\Водоохранные зоны\Яблонка\\3\\rinex\\2022_07_26_g201b20445_f003_.22o.obs',
+    'E:\ГЕОДЕЗИЯ\АЭРОФОТОСЪЕМКА\Водоохранные зоны\Яблонка\\3\\rinex\\2022_07_26_SonyRX1RM2_g201b20445_f003.marks',
+    'E:\ГЕОДЕЗИЯ\АЭРОФОТОСЪЕМКА\Водоохранные зоны\Яблонка\\3\\rinex\\2022_07_26_SonyA6000_g201b20445_f003.marks')

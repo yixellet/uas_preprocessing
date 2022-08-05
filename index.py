@@ -5,11 +5,7 @@ from Passport import Passport
 from Photo import Photo
 from QualityControl import QualityControl
 from Survey import Survey
-"""
-objectName = input('Название объекта съёмки: ')
-siteName = input('Съёмочный участок: ')
-telemetryPath = input('Путь к файлу телеметрии: ')
-"""
+
 rx1cam = Camera(35, 0.0045, 7952, 5304, 71.6, 'RGB')
 #a6000cam = Camera(20, 0.0039, 6000, 4000, 70.7, 'NIR')
 survey = Survey('Протока Николаевская', '1')
