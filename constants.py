@@ -1,50 +1,46 @@
 CRITICAL_RELATIVE_ANGLE = 6.0
 CRITICAL_ABSOLUTE_ANGLE = 13.0
 ADMISSIBLE_ELEV_DEVIATIONS = {
-    "FLATLAND": 3,
-    "HILLS": 5,
-    "MOUNTAIN": 5
+    1: 3,
+    2: 5,
+    3: 5
 }
 NOMINAL_OVERLAPS = {
-    "NATURE": {
-        "FLATLAND": {
-            "LINE": 63,
-            "SIDE": 32
-        },
-        "HILLS": {
-            "LINE": 67,
-            "SIDE": 35
-        },
-        "MOUNTAINS": {
-            "LINE": 72,
-            "SIDE": 40
-        }
+    1: {
+        "LINE": 63,
+        "SIDE": 32
     },
-    "SETTLEMENTS": {
-        "0.05": {
-            "LINE": 76,
-            "SIDE": 60
-        },
-        "0.10": {
-            "LINE": 77,
-            "SIDE": 62
-        },
-        "0.15": {
-            "LINE": 79,
-            "SIDE": 64
-        },
-        "0.20": {
-            "LINE": 81,
-            "SIDE": 67
-        },
-        "0.25": {
-            "LINE": 82,
-            "SIDE": 70
-        }
+    2: {
+        "LINE": 67,
+        "SIDE": 35
+    },
+    3: {
+        "LINE": 72,
+        "SIDE": 40
+    },
+    4: {
+        "LINE": 76,
+        "SIDE": 60
+    },
+    5: {
+        "LINE": 77,
+        "SIDE": 62
+    },
+    6: {
+        "LINE": 79,
+        "SIDE": 64
+    },
+    7: {
+        "LINE": 81,
+        "SIDE": 67
+    },
+    8: {
+        "LINE": 82,
+        "SIDE": 70
     }
 }
 CRITICAL_OVERLAPS = {
-    "FLATLAND": {
+    1: {
         "LINE": {
             "MIN": -7,
             "MAX": 6
@@ -54,7 +50,7 @@ CRITICAL_OVERLAPS = {
             "MAX": 10
         }
     },
-    "HILLS": {
+    2: {
         "LINE": {
             "MIN": -9,
             "MAX": 7
@@ -64,7 +60,7 @@ CRITICAL_OVERLAPS = {
             "MAX": 12
         }
     },
-    "MOUNTAINS": {
+    3: {
         "LINE": {
             "MIN": -12,
             "MAX": 8
@@ -83,22 +79,25 @@ CAMERAS = {
         'NAME': 'Sony RXI RMII',
         'SERIAL_NUMBER': 7160289,
         'FOCAL_LENGTH': 30,
+        'LENS_ANGLE': 71.75,
         'FRAME_SIZE': (7952, 5304),
         'PIXEL_SIZE': 0.0045,
         'SPECTRUM_SIGNATURE': 'RGB',
-        'FILE_FORMAT': 'JPEG'
+        'FILE_FORMAT': 'JPEG',
+        'COORD_SYS': 'Вправо'
     },
     2: {
         'NAME': 'Sony A6000',
         'SERIAL_NUMBER': 7391829,
         'FOCAL_LENGTH': 20,
+        'LENS_ANGLE': 71.75,
         'FRAME_SIZE': (6000, 4000),
         'PIXEL_SIZE': 0.0039,
         'SPECTRUM_SIGNATURE': 'NIR',
-        'FILE_FORMAT': 'ARW'
+        'FILE_FORMAT': 'ARW',
+        'COORD_SYS': 'Вправо'
     }
 }
-
 AFS_TYPES = {
     1: 'Площадная надирная',
     2: 'Линейная надирная',
