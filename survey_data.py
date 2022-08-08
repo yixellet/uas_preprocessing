@@ -4,8 +4,11 @@ OBJECT_NAME = 'Селитренное городище'
 # Название съемочного участка
 SITE_NAME = '1'
 
-# Имя файла телеметрии
-TELEMETRY = '/media/owgrant/Elements/АФС/Селитренное/1/photo/rgb/2022_08_01_SonyRX1RM2_g201b20445_f001_telemetry.txt'
+# Имя файла телеметрии для камеры Sony RXI RMII
+RXI_TELEMETRY = '/media/owgrant/Elements/АФС/Селитренное/1/photo/rgb/2022_08_01_SonyRX1RM2_g201b20445_f001_telemetry.txt'
+
+# Имя файла телеметрии для камеры Sony A6000
+A6000_TELEMETRY = '/media/owgrant/Elements/АФС/Селитренное/1/photo/nir/2022_08_01_SonyA6000_g201b20445_f001_telemetry.txt'
 
 # Файл бортовых ГНСС-наблюдений в формате RINEX (*.obs или *.yyo)
 RINEX = '/media/owgrant/Elements/АФС/Селитренное/1/avp/rinex/2022_08_01_g201b20445_f001_.22o.obs'
@@ -15,9 +18,6 @@ RXI_MARKS = '/media/owgrant/Elements/АФС/Селитренное/1/avp/rinex/2
 
 # Файл меток времени для камеры Sony A6000
 A6000_MARKS = '/media/owgrant/Elements/АФС/Селитренное/1/avp/rinex/2022_08_01_SonyA6000_g201b20445_f001.marks'
-
-# Директория для сохранения паспорта АФС
-PASSPORT_DIRECTORY = '/media/owgrant/Elements/АФС/Селитренное/1'
 
 # Высота фотографирования, заданная в программе Geoscan Planner
 FLIGHT_ALTITUDE = 303
@@ -67,8 +67,14 @@ CONTROLER_FIO = 'Котелевский К. А.'
 # Воздушное судно
 UAV_MODEL = 'Геоскан 201 Агрогеодезия'
 
+# ГНСС-приёмник
+RECEIVER = 'Topcon B111'
+
 # Вид аэрофотосъёмки: 1 - площадная надирная, 2 - линейная надирная, 3 - площадная перспективная, 4 - линейная перспективная
 AFS_TYPE = 1
 
-# 
+# Тип рельефа
 RELIEF_TYPE = 'Равнинный'
+
+# Ориентация маршрутов
+ROUTES_ORIENTATION = 'Вдоль оси АФС'

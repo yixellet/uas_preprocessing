@@ -1,7 +1,9 @@
-from datetime import date, time
 import re
+from datetime import date, time
+from math import tan, radians, sqrt
 
 from angleCalc import calcAngleDifference, calcAzimuth
+
 
 class Survey(object):
     """Объект АФС"""
@@ -15,11 +17,9 @@ class Survey(object):
                  telemetryPath: str = '/home/owgrant/Документы/Работа/' \
                  'Данные_для_тестирования_плагинов_QGIS/' \
                  '2022_04_21_SonyRX1RM2_g201b20445_f001_telemetry.txt',
-                 reliefType: str = 'HILLS',
                  nominalAltitude: int = 300) -> None:
 
         self.telemetryPath = telemetryPath
-        self.reliefType = reliefType
         self.nominalAltitude = nominalAltitude
     
     def __str__(self) -> str:
@@ -94,9 +94,17 @@ class Survey(object):
                                         route['photos'][-1].lon,)
         self.routes.append(route)
 
-    def calcGroundFrameSize(self):
-        if self.nominalAltitude == 300:
-            groundFrameWidth = 270
-            groundFrameHeight = 180
-            self.groundFrameSize = (groundFrameWidth, groundFrameHeight)
+    def calcGroundFrameSize(self, camera):
+        groundDiagonal = (tan(radians(camera['LENS_ANGLE'] / 2)) * self.nominalAltitude) * 2
+        matrixDiagonal = sqrt(camera['FRAME_SIZE'][0] ** 2 + camera['FRAME_SIZE'][1] ** 2)
+        groundFrameWidth = groundDiagonal * camera['FRAME_SIZE'][0] / matrixDiagonal
+        groundFrameHeight = groundDiagonal * camera['FRAME_SIZE'][1] / matrixDiagonal
+        self.groundFrameSize = (groundFrameWidth, groundFrameHeight)
         return self.groundFrameSize
+
+if __name__ == '__main__':
+    from constants import CAMERAS
+
+    s = Survey()
+    gfs = s.calcGroundFrameSize(CAMERAS[1])
+    print(gfs)
