@@ -1,5 +1,7 @@
 from os import path as p
 
+from constants import AFS_TYPES
+
 class Passport(object):
     """Класс для создания паспорта АФС"""
     def __init__(self, path, objectName, siteName):
@@ -15,8 +17,9 @@ class Passport(object):
             td {{border: 1px solid;}}
         </style>""")
     
-    def writeInfo(self, customer, date, startTime, endTime):
+    def writeInfo(self, customer, date, startTime, endTime, relief_type, afs_type, size):
         self.date = date
+        afs_type_property = 'Площадь АФС, кв.км.' if afs_type == 1 or afs_type == 3 else 'Протяженность АФС, км'
         self.report.write(f"""<h1>ПАСПОРТ АЭРОФОТОСЪЁМКИ</h1>
         <table>
             <tbody>
@@ -37,6 +40,16 @@ class Passport(object):
                     <td>{str(date) + ' ' + str(startTime)}</td>
                     <td>Дата и время окончания</td>
                     <td>{str(date) + ' ' + str(endTime)}</td>
+                </tr>
+                <tr>
+                    <td>Характер местности</td>
+                    <td>{relief_type}</td>
+                    <td>Вид аэрофотосъёмки</td>
+                    <td>{AFS_TYPES[afs_type]}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">{afs_type_property}</td>
+                    <td>{size}</td>
                 </tr>
             </tbody>
         </table>""")

@@ -77,3 +77,31 @@ CRITICAL_OVERLAPS = {
 }
 XMAS_TREE = 14
 STRAIGHT_LINE_RESIDUALS = 3
+UAV_MODEL = 'Геоскан 201 Агрогеодезия'
+CAMERAS = {
+    1: {
+        'NAME': 'Sony RXI RMII',
+        'SERIAL_NUMBER': 7160289,
+        'FOCAL_LENGTH': 30,
+        'FRAME_SIZE': (7952, 5304),
+        'PIXEL_SIZE': 0.0045,
+        'SPECTRUM_SIGNATURE': 'RGB',
+        'FILE_FORMAT': 'JPEG'
+    },
+    2: {
+        'NAME': 'Sony A6000',
+        'SERIAL_NUMBER': 7391829,
+        'FOCAL_LENGTH': 20,
+        'FRAME_SIZE': (6000, 4000),
+        'PIXEL_SIZE': 0.0039,
+        'SPECTRUM_SIGNATURE': 'NIR',
+        'FILE_FORMAT': 'ARW'
+    }
+}
+
+AFS_TYPES = {
+    1: 'Площадная надирная',
+    2: 'Линейная надирная',
+    4: 'Площадная перспективная',
+    4: 'Линейная перспективная'
+}

@@ -12,11 +12,11 @@ def marksToArray(marksFile):
 
 class SplitRinex(object):
     def splitRinex(self, rinex, marksRGB, marksNIR):
-        with open(rinex, 'r') as rnx, \
+        with open(rinex, 'r', encoding='latin-1') as rnx, \
              open(marksRGB, 'r') as mrxRGB, \
              open(marksNIR, 'r') as mrxNIR, \
-             open(rinex[:-8] + 'RX1RM2.22o.obs', 'w') as rnxRGB, \
-             open(rinex[:-8] + 'A6000.22o.obs', 'w') as rnxNIR:
+             open(rinex[:-8] + 'RX1RM2.22o.obs', 'w', encoding='utf-8') as rnxRGB, \
+             open(rinex[:-8] + 'A6000.22o.obs', 'w', encoding='utf-8') as rnxNIR:
             marksRGBArray = marksToArray(mrxRGB)
             marksNIRArray = marksToArray(mrxNIR)
             for line in rnx:
