@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
 from PyQt5.uic import loadUi
 
 from Passport import Passport
+from constants import CAMERAS
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -12,6 +13,8 @@ class MainWindow(QMainWindow):
         self.rxTelemetryBrowse.clicked.connect(self.browseRXTelemetry)
         self.a6000TelemetryBrowse.clicked.connect(self.browseA6000Telemetry)
         self.createPassportButton.clicked.connect(self.createPassports)
+        for camera in CAMERAS:
+            self.cameraComboBox.addItem(CAMERAS[camera]['NAME'])
     
     def browseRXTelemetry(self):
         fname = QFileDialog.getOpenFileName(self, 'Выберите файл телеметрии для камеры Sony RXI RII', '/', 'Текстовые файлы (*.txt)')
@@ -25,7 +28,7 @@ class MainWindow(QMainWindow):
     
     def createPassports(self):
         if self.rxTelemetryFile:
-            rxPassport = Passport(self.rxTelemetryFile, 'Селитренное городище', '3')
+            rxPassport = Passport(self.rxTelemetryFile, self.objectNameLineEdit.text(), self.surveySiteLineEdit.text())
             rxPassport.writeInfo('CUSTOMER_COMPANY', 'survey.date', '14:00', 
                 '18:00', 'RELIEF_TYPE', '1', 15, 'ROUTES_ORIENTATION', 
                 80, 60, 300, 4, 'camera', 'RECEIVER', 'UAV_MODEL')
@@ -42,6 +45,6 @@ mainWindow = MainWindow()
 widget = QtWidgets.QStackedWidget()
 widget.addWidget(mainWindow)
 widget.setFixedWidth(800)
-widget.setFixedHeight(600)
+widget.setFixedHeight(500)
 widget.show()
 sys.exit(app.exec_())
