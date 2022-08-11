@@ -1,10 +1,10 @@
 import sys
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
+from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QLineEdit
 from PyQt5.uic import loadUi
 
 from Passport import Passport
-from constants import CAMERAS
+from constants import UAV
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -13,8 +13,8 @@ class MainWindow(QMainWindow):
         self.rxTelemetryBrowse.clicked.connect(self.browseRXTelemetry)
         self.a6000TelemetryBrowse.clicked.connect(self.browseA6000Telemetry)
         self.createPassportButton.clicked.connect(self.createPassports)
-        for camera in CAMERAS:
-            self.cameraComboBox.addItem(CAMERAS[camera]['NAME'])
+        for camera in UAV['CAMERAS']:
+            self.cameraComboBox.addItem(UAV['CAMERAS'][camera]['NAME'])
     
     def browseRXTelemetry(self):
         fname = QFileDialog.getOpenFileName(self, 'Выберите файл телеметрии для камеры Sony RXI RII', '/', 'Текстовые файлы (*.txt)')

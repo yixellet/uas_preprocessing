@@ -73,29 +73,40 @@ CRITICAL_OVERLAPS = {
 }
 XMAS_TREE = 14
 STRAIGHT_LINE_RESIDUALS = 3
-UAV_MODEL = 'Геоскан 201 Агрогеодезия'
-CAMERAS = {
-    1: {
-        'NAME': 'Sony RXI RMII',
-        'SERIAL_NUMBER': 7160289,
-        'FOCAL_LENGTH': 30,
-        'LENS_ANGLE': 64,
-        'FRAME_SIZE': (7952, 5304),
-        'PIXEL_SIZE': 0.0045,
-        'SPECTRUM_SIGNATURE': 'RGB',
-        'FILE_FORMAT': 'JPEG',
-        'COORD_SYS': 'Вправо'
-    },
-    2: {
-        'NAME': 'Sony A6000',
-        'SERIAL_NUMBER': 7391829,
-        'FOCAL_LENGTH': 20,
-        'LENS_ANGLE': 68,
-        'FRAME_SIZE': (6000, 4000),
-        'PIXEL_SIZE': 0.0039,
-        'SPECTRUM_SIGNATURE': 'NIR',
-        'FILE_FORMAT': 'ARW',
-        'COORD_SYS': 'Вправо'
+UAV = {
+    'NAME': 'Геоскан 201 Агрогеодезия',
+    'RECEIVER': 'Topcon OEM B111',
+    'CAMERAS': {
+        1: {
+            'NAME': 'Sony RXI RMII',
+            'SERIAL_NUMBER': 7160289,
+            'LENS': {
+                'FOCAL_LENGTH': 30,
+                'SERIAL_NUMBER': '-',
+                'NAME': 'CarlZeiss Vario Sonnar T',
+                'ANGLE': 64
+            },
+            'FRAME_SIZE': (7952, 5304),
+            'PIXEL_SIZE': 0.0045,
+            'SPECTRUM_SIGNATURE': 'RGB',
+            'FILE_FORMAT': 'JPEG',
+            'COORD_SYS': 'Вправо'
+        },
+        2: {
+            'NAME': 'Sony A6000',
+            'SERIAL_NUMBER': 7391829,
+            'LENS': {
+                'FOCAL_LENGTH': 20,
+                'SERIAL_NUMBER': '0251942',
+                'NAME': 'SEL20F28',
+                'ANGLE': 68
+            },
+            'FRAME_SIZE': (6000, 4000),
+            'PIXEL_SIZE': 0.0039,
+            'SPECTRUM_SIGNATURE': 'NIR',
+            'FILE_FORMAT': 'ARW',
+            'COORD_SYS': 'Вправо'
+        }
     }
 }
 AFS_TYPES = {

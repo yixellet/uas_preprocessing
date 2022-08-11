@@ -15,7 +15,7 @@ class Passport(object):
     
     def writeInfo(self, customer, date, startTime, endTime, relief_type, 
                   afs_type, size, routes_orientation, line_overlap, side_overlap,
-                  altitude, ground_pixel_size, camera, receiver, uav):
+                  altitude, ground_pixel_size, uav, camera):
         self.date = date
         afs_type_property = 'Площадь АФС, кв.км.' if afs_type == 1 or afs_type == 3 else 'Протяженность АФС, км'
         self.report.write(f"""<h1>ПАСПОРТ АЭРОФОТОСЪЁМКИ</h1>
@@ -67,9 +67,9 @@ class Passport(object):
                 </tr>
                 <tr>
                     <th>Модель аэрофотокамеры</th>
-                    <td>{camera['NAME']}</td>
+                    <td>{uav['CAMERAS'][camera]['NAME']}</td>
                     <th>Серийный номер аэрофотокамеры</th>
-                    <td>{camera['SERIAL_NUMBER']}</td>
+                    <td>{uav['CAMERAS'][camera]['SERIAL_NUMBER']}</td>
                 </tr>
                 <tr>
                     <th colspan="3">Наличие и тип компенсации продольного сдвига изображения</th>
@@ -77,21 +77,21 @@ class Passport(object):
                 </tr>
                 <tr>
                     <th>Фокусное расстояние объектива, мм</th>
-                    <td>{camera['FOCAL_LENGTH']}</td>
+                    <td>{uav['CAMERAS'][camera]['LENS']['FOCAL_LENGTH']}</td>
                     <th>Тип и серийный номер объектива (если он заменяемый)</th>
-                    <td>-</td>
+                    <td>{uav['CAMERAS'][camera]['LENS']['NAME'] + ', s/n ' + uav['CAMERAS'][camera]['LENS']['SERIAL_NUMBER']}</td>
                 </tr>
                 <tr>
                     <th>Размер кадра Nx, пикс</th>
-                    <td>{camera['FRAME_SIZE'][0]}</td>
+                    <td>{uav['CAMERAS'][camera]['FRAME_SIZE'][0]}</td>
                     <th>Размер кадра Ny, пикс</th>
-                    <td>{camera['FRAME_SIZE'][1]}</td>
+                    <td>{uav['CAMERAS'][camera]['FRAME_SIZE'][1]}</td>
                 </tr>
                 <tr>
                     <th>Физический размер пикселя, мм</th>
-                    <td>{camera['PIXEL_SIZE']}</td>
+                    <td>{uav['CAMERAS'][camera]['PIXEL_SIZE']}</td>
                     <th>Ориентация системы координат снимка</th>
-                    <td>{camera['COORD_SYS']}</td>
+                    <td>{uav['CAMERAS'][camera]['COORD_SYS']}</td>
                 </tr>
                 <tr>
                     <th>Тип аэрофотоустановки (гироплатформы)</th>
@@ -101,11 +101,11 @@ class Passport(object):
                 </tr>
                 <tr>
                     <th colspan="3">Спектральная характеристика аэрофотоснимков</th>
-                    <td>{camera['SPECTRUM_SIGNATURE']}</td>
+                    <td>{uav['CAMERAS'][camera]['SPECTRUM_SIGNATURE']}</td>
                 </tr>
                 <tr>
                     <th colspan="3">Формат представления цифрового изображения</th>
-                    <td>{camera['FILE_FORMAT']}</td>
+                    <td>{uav['CAMERAS'][camera]['FILE_FORMAT']}</td>
                 </tr>
                 <tr>
                     <th>Лидар (тип)</th>
@@ -119,11 +119,11 @@ class Passport(object):
                 </tr>
                 <tr>
                     <th colspan="3">ГНСС-приёмник (тип, модель)</th>
-                    <td>{receiver}</td>
+                    <td>{uav['RECEIVER']}</td>
                 </tr>
                 <tr>
                     <th colspan="3">Воздушное судно</th>
-                    <td>{uav}</td>
+                    <td>{uav['NAME']}</td>
                 </tr>
                 <tr>
                     <th colspan="3">Дополнительные сведения по требованию ТЗ</th>
