@@ -161,7 +161,7 @@ class Passport(object):
         """)
         
     def closeFile(self, realizer, controller):
-        self.report.write('<p>Качество материало аэрофотосъёмочной продукции соответствует ТЗ и требованиям к АФС</p>')
+        self.report.write('<p>Качество материалов аэрофотосъёмочной продукции соответствует ТЗ и требованиям к АФС</p>')
         self.report.write("""<div class="signature">
             <div>Исполнитель АФС</div>
             <div>

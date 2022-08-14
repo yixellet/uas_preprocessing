@@ -95,7 +95,7 @@ class Survey(object):
         self.routes.append(route)
 
     def calcGroundFrameSize(self, camera):
-        groundDiagonal = (tan(radians(camera['LENS_ANGLE'] / 2)) * self.nominalAltitude) * 2
+        groundDiagonal = (tan(radians(camera['LENS']['ANGLE'] / 2)) * self.nominalAltitude) * 2
         matrixDiagonal = sqrt(camera['FRAME_SIZE'][0] ** 2 + camera['FRAME_SIZE'][1] ** 2)
         groundFrameWidth = groundDiagonal * camera['FRAME_SIZE'][0] / matrixDiagonal
         groundFrameHeight = groundDiagonal * camera['FRAME_SIZE'][1] / matrixDiagonal
